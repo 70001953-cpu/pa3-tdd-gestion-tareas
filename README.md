@@ -1,101 +1,100 @@
-# Sistema de Gestión de Tareas — TDD + ORM
+################Sistema de Gestión de Tareas — TDD + ORM#####################################
 
 **Universidad Continental | Construcción de Software | Unidad 3**
 
 Proyecto desarrollado aplicando **Test-Driven Development (TDD)** con el ciclo
 Red-Green-Refactor, **Katas TDD** y **SQLAlchemy ORM** para la persistencia de datos.
 
-##  Integrantes
+###################Integrantes###############################################################
 
 | N° | Nombre |
 |----|--------|
-| 1 | Angelo Samir Quispe Pérez |
+| 1  | Quispe Perez, Angelo Samir |
 
-##  Descripción
+######################################## Descripción ########################################
 
 Sistema CRUD de gestión de tareas con:
 - Creación, listado, actualización y eliminación de tareas
 - Prioridades (1-baja, 2-media, 3-alta)
-- Estado completado/pendiente
+- Estado completado / pendiente
 - Estadísticas en tiempo real
 - Persistencia con SQLAlchemy + SQLite
 
-##  Estructura del proyecto
+################################### Estructura del proyecto #################################
 
 ```
-proyecto_tdd/
+pa3-tdd-gestion-tareas/
 ├── src/
 │   ├── __init__.py
 │   ├── models.py              # Modelos ORM (SQLAlchemy)
-│   └── servicio_tareas.py     # Lógica de negocio (servicio)
+│   └── servicio_tareas.py     # Lógica de negocio
 ├── tests/
 │   ├── __init__.py
 │   ├── conftest.py
 │   └── test_servicio_tareas.py  # 30 pruebas unitarias TDD
-├── requirements.txt
+├── .gitignore
 ├── pytest.ini
+├── requirements.txt
 └── README.md
 ```
 
-##  Instalación
+######################################### Instalación ########################################
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/70001953-cpu/proyecto-tdd-tareas.git
-cd proyecto-tdd-tareas
+git clone https://github.com/70001953-cpu/pa3-tdd-gestion-tareas.git
+cd pa3-tdd-gestion-tareas
 
-# 2. Crear entorno virtual
-python -m venv venv
-source venv/bin/activate        # Linux/Mac
-venv\Scripts\activate           # Windows
-
-# 3. Instalar dependencias
+# 2. Instalar dependencias
 pip install -r requirements.txt
 ```
 
-## Ejecutar pruebas
+## 🧪 Ejecutar las pruebas
 
 ```bash
-# Todas las pruebas con detalle
 pytest tests/ -v
-
-# Con reporte de cobertura
-pytest tests/ -v --cov=src --cov-report=term-missing
 ```
 
-### Resultado esperado
+######################################## Resultado esperado ##################################
 
 ```
 collected 30 items
-PASSED TestCrearTarea::test_crear_tarea_valida
-PASSED TestCrearTarea::test_crear_tarea_titulo_vacio_lanza_error
-... (27 pruebas más)
-30 passed in 0.82s
+
+tests/test_servicio_tareas.py::TestCrearTarea::test_crear_tarea_valida               PASSED
+tests/test_servicio_tareas.py::TestCrearTarea::test_titulo_vacio_lanza_error          PASSED
+tests/test_servicio_tareas.py::TestCrearTarea::test_prioridad_invalida_lanza_error    PASSED
+tests/test_servicio_tareas.py::TestCrearTarea::test_prioridad_por_defecto_es_1        PASSED
+tests/test_servicio_tareas.py::TestListarTareas::test_lista_vacia                     PASSED
+tests/test_servicio_tareas.py::TestListarTareas::test_ordena_por_prioridad            PASSED
+tests/test_servicio_tareas.py::TestCompletarTarea::test_cambia_estado                 PASSED
+tests/test_servicio_tareas.py::TestEstadisticas::test_porcentaje_50                   PASSED
+... (22 pruebas más)
+
+===================== 30 passed in 0.82s ========================
 ```
 
-##  Ciclo TDD aplicado
+####################################### Ciclo TDD aplicado ####################################
 
 ```
-🔴 RED    → Escribir la prueba que falla
-🟢 GREEN  → Implementar el mínimo código para que pase
-🔵 REFACTOR → Mejorar el código sin romper las pruebas
+🔴 RED      → Escribir la prueba que falla (funcionalidad no existe aún)
+🟢 GREEN    → Escribir el mínimo código para que la prueba pase
+🔵 REFACTOR → Mejorar el código sin romper ninguna prueba
 ```
 
-### Katas desarrolladas
+###################################### Katas desarrolladas ####################################
 
-| Kata | Descripción | Pruebas |
-|------|-------------|---------|
-| 1    | Crear tarea | 8 pruebas |
-| 2    | Listar tareas | 5 pruebas |
-| 3    | Obtener tarea por ID | 2 pruebas |
-| 4    | Completar tarea | 3 pruebas |
-| 5    | Actualizar tarea | 6 pruebas |
-| 6    | Eliminar tarea | 3 pruebas |
-| 7    | Estadísticas | 3 pruebas |
+| Kata | Descripción            | Pruebas | Resultado   |
+|------|------------------------|---------|-------------|
+| 1    | Crear tarea            | 8       | ✅ 8/8 PASSED |
+| 2    | Listar tareas          | 5       | ✅ 5/5 PASSED |
+| 3    | Obtener tarea por ID   | 2       | ✅ 2/2 PASSED |
+| 4    | Completar tarea        | 3       | ✅ 3/3 PASSED |
+| 5    | Actualizar tarea       | 6       | ✅ 6/6 PASSED |
+| 6    | Eliminar tarea         | 3       | ✅ 3/3 PASSED |
+| 7    | Estadísticas           | 3       | ✅ 3/3 PASSED |
+| **TOTAL** |                 | **30**  | ✅ **30/30** |
 
-##  ORM — SQLAlchemy
-
-Se usa **SQLAlchemy 2.x** con patrón **Session + DeclarativeBase**:
+####################################### ORM — SQLAlchemy ######################################
 
 ```python
 class Tarea(Base):
@@ -103,17 +102,20 @@ class Tarea(Base):
     id          = Column(Integer, primary_key=True)
     titulo      = Column(String(200), nullable=False)
     completada  = Column(Boolean, default=False)
-    prioridad   = Column(Integer, default=1)
+    prioridad   = Column(Integer, default=1)   # 1=baja 2=media 3=alta
 ```
 
-Las pruebas usan `sqlite:///:memory:` para aislamiento total.
+Las pruebas usan `sqlite:///:memory:` → cada test arranca con BD limpia.
 
-##  Dependencias
+########################################### Dependencias ######################################
 
 ```
-pytest==9.0.3
-SQLAlchemy==2.x
-pytest-cov (opcional, para cobertura)
+pytest>=9.0.0
+SQLAlchemy>=2.0.0
 ```
+
+############################################# Repositorio #####################################
+
+https://github.com/70001953-cpu/pa3-tdd-gestion-tareas
 
 
