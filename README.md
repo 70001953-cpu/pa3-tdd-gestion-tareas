@@ -5,13 +5,13 @@
 Proyecto desarrollado aplicando **Test-Driven Development (TDD)** con el ciclo
 Red-Green-Refactor, **Katas TDD** y **SQLAlchemy ORM** para la persistencia de datos.
 
-## 👥 Integrantes
+##  Integrantes
 
 | N° | Nombre |
 |----|--------|
 | 1 | Angelo Samir Quispe Pérez |
 
-## 📋 Descripción
+##  Descripción
 
 Sistema CRUD de gestión de tareas con:
 - Creación, listado, actualización y eliminación de tareas
@@ -20,7 +20,7 @@ Sistema CRUD de gestión de tareas con:
 - Estadísticas en tiempo real
 - Persistencia con SQLAlchemy + SQLite
 
-## 🗂️ Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 proyecto_tdd/
@@ -37,11 +37,11 @@ proyecto_tdd/
 └── README.md
 ```
 
-## ⚙️ Instalación
+##  Instalación
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/proyecto-tdd-tareas.git
+git clone https://github.com/70001953-cpu/proyecto-tdd-tareas.git
 cd proyecto-tdd-tareas
 
 # 2. Crear entorno virtual
@@ -53,7 +53,7 @@ venv\Scripts\activate           # Windows
 pip install -r requirements.txt
 ```
 
-## 🧪 Ejecutar pruebas
+## Ejecutar pruebas
 
 ```bash
 # Todas las pruebas con detalle
@@ -73,7 +73,7 @@ PASSED TestCrearTarea::test_crear_tarea_titulo_vacio_lanza_error
 30 passed in 0.82s
 ```
 
-## 🔄 Ciclo TDD aplicado
+##  Ciclo TDD aplicado
 
 ```
 🔴 RED    → Escribir la prueba que falla
@@ -93,7 +93,7 @@ PASSED TestCrearTarea::test_crear_tarea_titulo_vacio_lanza_error
 | 6    | Eliminar tarea | 3 pruebas |
 | 7    | Estadísticas | 3 pruebas |
 
-## 🗄️ ORM — SQLAlchemy
+##  ORM — SQLAlchemy
 
 Se usa **SQLAlchemy 2.x** con patrón **Session + DeclarativeBase**:
 
@@ -108,7 +108,7 @@ class Tarea(Base):
 
 Las pruebas usan `sqlite:///:memory:` para aislamiento total.
 
-## 📦 Dependencias
+##  Dependencias
 
 ```
 pytest==9.0.3
@@ -116,6 +116,4 @@ SQLAlchemy==2.x
 pytest-cov (opcional, para cobertura)
 ```
 
-## 📄 Licencia
 
-MIT — Universidad Continental 2025
